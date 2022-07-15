@@ -115,6 +115,20 @@ body .container {
   right: -91px;
 }
 
+.client {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 150px;
+}
+.client__img {
+  filter: grayscale(1);
+}
+.client__img:hover {
+  filter: none;
+}
+
 .btn {
   border: 1px solid transparent;
   text-decoration: none;

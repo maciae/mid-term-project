@@ -189,6 +189,19 @@ body{
     }
 }
 
+.client{
+    @include flexible(flex, row, nowrap, space-between, center);
+    margin-top: 150px;
+
+    &__img{
+        filter: grayscale(1);
+
+        &:hover{
+            filter: none;
+        }
+    }
+}
+
 .btn{
     border: 1px solid transparent;
     text-decoration: none;
