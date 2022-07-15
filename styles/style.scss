@@ -1,0 +1,145 @@
+/* Mixins */
+@mixin flexible( $dis , $direction , $corte , $just , $align ){
+    display         : $dis;
+    flex-flow       : $direction $corte;
+    justify-content : $just;
+    align-items     : $align;
+}
+
+@mixin grid( $columnas , $espacio){
+    display                 : grid;
+    grid-template-columns   : repeat( $columnas , 1fr );
+    gap                     : $espacio;
+
+    @media screen and (max-width:480px) {
+        grid-template-columns : 1fr ;
+        gap : 0em;
+    }
+}
+
+@mixin mv( $medida : 480px ){
+    @media screen and (max-width: $medida ) {
+        @content;
+    }
+}
+
+/* Colors */
+
+$colores: (
+    "primary" : #072AC8,
+    "accent" : #43D2FF,
+    "primary-hover" : #A2D6F9,
+    "primary-tapped" : #D1EDFF,
+    "neutral-dark" : #292E47,
+    "neutral-medium" : #6B708D,
+    "neutral-light" : #F2F4FC,
+    "neutral-light-blue" : #ECF7FF,
+    "secondary" : #FFC600
+);
+
+body{
+    margin: 0 auto;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+
+    h1, h2, h3, h4 {
+        font-weight: bold;
+    }
+
+    .intro-text {
+        &-m{
+            font-weight: 500;
+            font-size: 24px;
+        }
+
+        &-r{
+            font-weight: 400;
+            font-size: 20px;
+        }
+    }
+    
+    .headline-text {
+        font-size: 17px;
+
+        &-r{
+            font-weight: 400;
+        }
+
+        &-m{
+            font-weight: 500;
+        }
+    }
+    
+    .caption-text {
+        font-weight: 400;
+
+        &-one{
+            font-size: 15px;
+        }
+
+        &-two{
+            font-size: 13px;
+        }
+    }
+
+    .container {
+        max-width: 1100px;
+        margin-right: auto;
+        margin-left: auto; 
+    }
+}
+
+.header{
+    padding-top: 70px;
+    @include flexible(flex, row, nowrap, space-between, center);
+
+    &__logo{
+        width: 61px;
+    }
+}
+
+.nav{
+    &__item{
+        text-decoration: none;
+        color: map-get( $colores, "neutral-medium");
+
+        &:not(:last-child){
+            padding-right: 60px;
+        }
+
+        &--active{
+            color: map-get( $colores, "primary");
+        }
+    }
+}
+
+.hero{
+    @include flexible(flex, row, nowrap, space-between, center);
+
+    &__header{
+        color: map-get($colores , "neutral-dark" );
+    }
+
+    &__text{
+        max-width: 508px;
+    }
+
+    &__image{
+        img{
+            max-width: 508px;
+        }
+    }
+}
+
+.btn{
+    border: 1px solid transparent;
+    text-decoration: none;
+
+    &--primary{
+        font-size: 17px;
+        line-height: 130%;
+        padding: 15px 36px;
+        background-color: map-get( $colores, "primary");
+        color: white;
+    } 
+}

@@ -1,0 +1,91 @@
+/* Mixins */
+/* Colors */
+body {
+  margin: 0 auto;
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
+}
+body h1, body h2, body h3, body h4 {
+  font-weight: bold;
+}
+body .intro-text-m {
+  font-weight: 500;
+  font-size: 24px;
+}
+body .intro-text-r {
+  font-weight: 400;
+  font-size: 20px;
+}
+body .headline-text {
+  font-size: 17px;
+}
+body .headline-text-r {
+  font-weight: 400;
+}
+body .headline-text-m {
+  font-weight: 500;
+}
+body .caption-text {
+  font-weight: 400;
+}
+body .caption-text-one {
+  font-size: 15px;
+}
+body .caption-text-two {
+  font-size: 13px;
+}
+body .container {
+  max-width: 1100px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.header {
+  padding-top: 70px;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+}
+.header__logo {
+  width: 61px;
+}
+
+.nav__item {
+  text-decoration: none;
+  color: #6B708D;
+}
+.nav__item:not(:last-child) {
+  padding-right: 60px;
+}
+.nav__item--active {
+  color: #072AC8;
+}
+
+.hero {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+}
+.hero__header {
+  color: #292E47;
+}
+.hero__text {
+  max-width: 508px;
+}
+.hero__image img {
+  max-width: 508px;
+}
+
+.btn {
+  border: 1px solid transparent;
+  text-decoration: none;
+}
+.btn--primary {
+  font-size: 17px;
+  line-height: 130%;
+  padding: 15px 36px;
+  background-color: #072AC8;
+  color: white;
+}/*# sourceMappingURL=style.css.map */
