@@ -4,6 +4,7 @@ body {
   margin: 0 auto;
   font-family: "Roboto", sans-serif;
   font-weight: 500;
+  background-color: #F2F4FC;
 }
 body h1, body h2, body h3, body h4 {
   font-weight: bold;
@@ -67,15 +68,51 @@ body .container {
   flex-flow: row nowrap;
   justify-content: space-between;
   align-items: center;
+  padding-top: 100px;
+}
+.hero__content {
+  max-width: 530px;
 }
 .hero__header {
   color: #292E47;
+  font-weight: bold;
+  font-size: 60px;
+  text-align: left;
 }
 .hero__text {
-  max-width: 508px;
+  line-height: 150%;
+  font-size: 20px;
+  max-width: 435px;
+  margin-bottom: 40px;
+  font-weight: 400;
+  color: #6B708D;
 }
-.hero__image img {
-  max-width: 508px;
+.hero .btn-hero-unstyled {
+  text-decoration: none;
+  font-weight: 500;
+  color: #6B708D;
+}
+.hero .btn-hero {
+  margin-right: 40px;
+  font-weight: 500;
+}
+.hero__image {
+  position: relative;
+}
+.hero__image .hero-img {
+  max-width: 570px;
+}
+.hero__image .hero-card-1 {
+  max-width: 375px;
+  position: absolute;
+  top: -28px;
+  left: -95px;
+}
+.hero__image .hero-card-2 {
+  max-width: 355px;
+  position: absolute;
+  top: 420px;
+  right: -91px;
 }
 
 .btn {
@@ -84,7 +121,7 @@ body .container {
 }
 .btn--primary {
   font-size: 17px;
-  line-height: 130%;
+  line-height: auto;
   padding: 15px 36px;
   background-color: #072AC8;
   color: white;

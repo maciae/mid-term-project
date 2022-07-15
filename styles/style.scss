@@ -23,7 +23,23 @@
     }
 }
 
+@mixin btn-style($backgroundcolor, $color, $fontsize: 17px, $padding: 15px 36px, $lineheight: auto){
+    font-size: $fontsize;
+    line-height: $lineheight;
+    padding: $padding;
+    background-color: $backgroundcolor;
+    color: $color;
+}
+
 /* Colors */
+
+$fontweights: (
+    "thin" : 100,
+    "regular" : 400,
+    "medium" : 500,
+    "bold" : 700,
+    "black" : 900
+);
 
 $colores: (
     "primary" : #072AC8,
@@ -40,7 +56,9 @@ $colores: (
 body{
     margin: 0 auto;
     font-family: 'Roboto', sans-serif;
-    font-weight: 500;
+    font-weight: map-get($fontweights, "medium");
+    background-color: map-get($colores, "neutral-light");
+
 
     h1, h2, h3, h4 {
         font-weight: bold;
@@ -48,12 +66,12 @@ body{
 
     .intro-text {
         &-m{
-            font-weight: 500;
+            font-weight: map-get($fontweights, "medium");
             font-size: 24px;
         }
 
         &-r{
-            font-weight: 400;
+            font-weight: map-get($fontweights, "regular");
             font-size: 20px;
         }
     }
@@ -62,16 +80,16 @@ body{
         font-size: 17px;
 
         &-r{
-            font-weight: 400;
+            font-weight: map-get($fontweights, "regular");
         }
 
         &-m{
-            font-weight: 500;
+            font-weight: map-get($fontweights, "medium");
         }
     }
     
     .caption-text {
-        font-weight: 400;
+        font-weight: map-get($fontweights, "regular");
 
         &-one{
             font-size: 15px;
@@ -115,18 +133,58 @@ body{
 
 .hero{
     @include flexible(flex, row, nowrap, space-between, center);
+    padding-top: 100px;
+
+    &__content{
+        max-width: 530px;
+    }
 
     &__header{
         color: map-get($colores , "neutral-dark" );
+        font-weight: bold;
+        font-size: 60px;
+        text-align: left;
     }
 
     &__text{
-        max-width: 508px;
+        line-height: 150%;
+        font-size: 20px;
+        max-width: 435px;
+        margin-bottom: 40px;
+        font-weight: map-get($fontweights, "regular");
+        color:  map-get($colores, "neutral-medium");
+    }
+
+    .btn-hero-unstyled{
+        text-decoration: none;
+        font-weight: map-get($fontweights, "medium");
+        color:  map-get($colores, "neutral-medium");
+    }
+
+    .btn-hero{
+        margin-right: 40px;
+        font-weight: map-get($fontweights, "medium");
     }
 
     &__image{
-        img{
-            max-width: 508px;
+        position: relative;
+        
+        .hero-img{
+            max-width: 570px;
+        }
+
+        .hero-card-1{
+            max-width: 375px;
+            position: absolute;
+            top: -28px;
+            left: -95px;
+        }
+
+        .hero-card-2{
+            max-width: 355px;
+            position: absolute;
+            top: 420px;
+            right: -91px;
         }
     }
 }
@@ -136,10 +194,11 @@ body{
     text-decoration: none;
 
     &--primary{
-        font-size: 17px;
-        line-height: 130%;
-        padding: 15px 36px;
-        background-color: map-get( $colores, "primary");
-        color: white;
-    } 
+        @include btn-style(map-get( $colores, "primary"), white);
+    }
+
+    &--primary-active{
+
+    }
+    
 }
