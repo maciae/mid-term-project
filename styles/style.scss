@@ -131,6 +131,7 @@ body{
     }
 }
 
+/* HERO SECTION */
 .hero{
     @include flexible(flex, row, nowrap, space-between, center);
     padding-top: 100px;
@@ -189,6 +190,7 @@ body{
     }
 }
 
+/* CLIENT SECTION */
 .client{
     @include flexible(flex, row, nowrap, space-between, center);
     margin-top: 150px;
@@ -198,6 +200,58 @@ body{
 
         &:hover{
             filter: none;
+        }
+    }
+}
+
+/* PROJECTS SECTION */
+.projects{
+    margin-top: 150px;
+    margin-bottom: 150px;
+
+    &__header{
+        font-weight: bold;
+        font-size: 40px;
+        color: map-get($colores , "neutral-dark" );
+
+    }
+
+    &__cards{
+        @include grid(3, 40px);
+    }
+    .card{
+        background-color: white;
+        &__img{
+            height: 240px;
+            width: 100%;
+            vertical-align: middle;
+            display: inline-block;
+        }
+
+        &__title{
+            font-size: 24px;
+            font-weight: map-get($fontweights, "medium");
+            color: map-get($colores , "neutral-dark" );
+            padding: 20px 25px 5px 25px;
+        }
+
+        &__description{
+            padding: 0px 25px 12px 25px;
+            color: map-get($colores , "neutral-medium" );
+            font-weight: map-get($fontweights, "regular");
+            line-height: 150%;
+            font-size: 17px;
+            margin-top: 5px;
+            min-height: 70px;
+        }
+
+        &__link-div{
+            padding: 0px 25px 30px 25px;
+        }
+
+        &__link{
+            text-decoration: none;
+            color: map-get($colores , "primary" );
         }
     }
 }
