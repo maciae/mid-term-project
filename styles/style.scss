@@ -1,19 +1,58 @@
+// Tablets and small desktops
+$screen-lg-max: 992px;
+
+// Small tablets (portrait view)
+$screen-md-max: 768px;
+
+// Small tablets (portrait view)
+$screen-sm-max: 576px;
+
+// Large devices
+@mixin max-lg {
+    @media (max-width: #{$screen-lg-max}) {
+        @content;
+    }
+}
+
+// Medium devices
+@mixin max-md {
+    @media (max-width: #{$screen-md-max}) {
+        @content;
+    }
+}
+
+// Small devices
+@mixin max-sm {
+    @media (max-width: #{$screen-sm-max}) {
+        @content;
+    }
+}
+
 /* Mixins */
-@mixin flexible( $dis , $direction , $corte , $just , $align ){
+@mixin flexible( $dis , $direction , $corte , $just , $align , $gap: 0px){
     display         : $dis;
     flex-flow       : $direction $corte;
     justify-content : $just;
     align-items     : $align;
+    gap             : $gap;
 }
 
-@mixin grid( $columnas , $espacio){
+@mixin grid( $columnas , $espacio, $justifyitems: normal, $defaultresponsive: true){
     display                 : grid;
     grid-template-columns   : repeat( $columnas , 1fr );
     gap                     : $espacio;
+    justify-items: center;
+    
+    @if $defaultresponsive {
+        @include max-lg {
+            grid-template-columns   : repeat( 2 , 1fr );
+            gap: 25px;
+        }
 
-    @media screen and (max-width:480px) {
-        grid-template-columns : 1fr ;
-        gap : 0em;
+        @include max-sm {
+            grid-template-columns   : repeat( 1 , 1fr );
+            gap: 25px;
+        }
     }
 }
 
@@ -30,6 +69,7 @@
     background-color: $backgroundcolor;
     color: $color;
 }
+
 
 /* Colors */
 
@@ -58,10 +98,15 @@ body{
     font-family: 'Roboto', sans-serif;
     font-weight: map-get($fontweights, "medium");
     background-color: map-get($colores, "neutral-light");
-
+    color: map-get($colores, "neutral-dark");
+    font-size: 17px;
 
     h1, h2, h3, h4 {
         font-weight: bold;
+
+        @include max-md {
+            text-align: center;
+        }
     }
 
     .intro-text {
@@ -105,39 +150,119 @@ body{
         margin-right: auto;
         margin-left: auto; 
     }
+
+    .section, .footer{
+        padding: 0 15px;
+
+        @include max-lg {
+            padding: 0 30px;
+        }
+    }
 }
 
 .header{
     padding-top: 70px;
     @include flexible(flex, row, nowrap, space-between, center);
-
+    margin-bottom: 70px;
+    @include max-lg{
+        padding-top: 0px;
+    }
     &__logo{
         width: 61px;
+
+        @include max-lg{
+            padding-left: 15px;
+        }
+    }
+
+    .btn{    
+        @include max-lg{
+            display: none;
+        }
+    }
+    
+    .checkbtn{
+        display: none;
+        font-size: 30px;
+        color: #fff;
+        float: right;
+        line-height: 80px;
+        padding: 5px 20px;
+        cursor: pointer;
+        color: black;
+        margin-right: 30px;
+        @include max-lg{
+            display: block;
+        }
+
+        .fas{
+            font-size: 20px;
+        }
+    }
+
+    .checkboxbtn{
+        display: none;
+
+        &:checked + .nav{
+            @include max-lg{
+                display: flex;
+                flex-direction: column;
+                background-color: #C8C8C8;
+                width: 100%;
+                position: absolute;
+                margin-top: 200px;
+                transition: .2s linear;
+    
+                & > .nav__item{
+                    padding: 15px 10px;
+                }
+            }
+        }
+
+        &:checked ~ .checkbtn{
+            @include max-lg{
+                color: white;
+                background-color: #C8C8C8;
+            }
+        }
+    }
+
+    .nav{    
+        @include max-lg{
+            margin-top: -300px;
+        }
+        &__item{
+            text-decoration: none;
+            color: map-get( $colores, "neutral-medium");
+    
+            &:not(:last-child){
+                padding-right: 60px;
+            }
+    
+            &--active{
+                color: map-get( $colores, "primary");
+            }
+        }
     }
 }
 
-.nav{
-    &__item{
-        text-decoration: none;
-        color: map-get( $colores, "neutral-medium");
 
-        &:not(:last-child){
-            padding-right: 60px;
-        }
-
-        &--active{
-            color: map-get( $colores, "primary");
-        }
-    }
-}
 
 /* HERO SECTION */
 .hero{
     @include flexible(flex, row, nowrap, space-between, center);
+    
+    @include max-lg {
+        flex-direction: column;
+    }
     padding-top: 100px;
 
     &__content{
         max-width: 530px;
+        @include max-lg {
+            margin-bottom: 75px;
+            max-width: 670px;
+        }
     }
 
     &__header{
@@ -145,6 +270,10 @@ body{
         font-weight: bold;
         font-size: 60px;
         text-align: left;
+        @include max-lg {
+            text-align: center;
+            font-size: 40px;
+        }
     }
 
     &__text{
@@ -154,17 +283,29 @@ body{
         margin-bottom: 40px;
         font-weight: map-get($fontweights, "regular");
         color:  map-get($colores, "neutral-medium");
+
+        @include max-lg {
+            max-width: 650px;
+            text-align: center;
+            font-size: 17px;
+        }
     }
 
-    .btn-hero-unstyled{
-        text-decoration: none;
-        font-weight: map-get($fontweights, "medium");
-        color:  map-get($colores, "neutral-medium");
-    }
-
-    .btn-hero{
-        margin-right: 40px;
-        font-weight: map-get($fontweights, "medium");
+    &__buttons{
+        @include max-lg {
+            text-align: center;
+        }
+        
+        .btn-hero-unstyled{
+            text-decoration: none;
+            font-weight: map-get($fontweights, "medium");
+            color:  map-get($colores, "neutral-medium");
+        }
+    
+        .btn-hero{
+            margin-right: 40px;
+            font-weight: map-get($fontweights, "medium");
+        }
     }
 
     &__image{
@@ -172,6 +313,10 @@ body{
         
         .hero-img{
             max-width: 570px;
+
+            @include max-sm {
+                max-width: 400px;
+            }
         }
 
         .hero-card-1{
@@ -179,6 +324,16 @@ body{
             position: absolute;
             top: -28px;
             left: -95px;
+
+            @include max-lg {
+                max-width: 250px;
+                top: 7px;
+                left: -60px;
+            }
+
+            @include max-md {
+                display: none;
+            }
         }
 
         .hero-card-2{
@@ -186,20 +341,40 @@ body{
             position: absolute;
             top: 420px;
             right: -91px;
+
+            @include max-lg {
+                max-width: 250px;
+                top: 434px;
+                right: -110px;
+            }
+
+            @include max-md {
+                display: none;
+            }
         }
     }
 }
 
 /* CLIENT SECTION */
 .client{
-    @include flexible(flex, row, nowrap, space-between, center);
     margin-top: 150px;
+    @include grid(5, 10px, center);
+
+    @include max-sm {
+        grid-template-columns   : repeat( 2 , 1fr );
+        gap: 40px 0px;
+    }
 
     &__img{
         filter: grayscale(1);
 
         &:hover{
             filter: none;
+        }
+        @include max-md {
+            &:last-child{
+                display: none;
+            }
         }
     }
 }
@@ -212,14 +387,27 @@ body{
     &__header{
         font-weight: bold;
         font-size: 40px;
-        color: map-get($colores , "neutral-dark" );
-
+        color: map-get($colores , "neutral-dark");
     }
 
     &__cards{
         @include grid(3, 40px);
+        @include max-lg {
+            grid-template-columns   : repeat( 2 , 1fr );
+            gap: 20px 40px;
+        }
+    
+        @include max-md {
+            grid-template-columns   : repeat( 1 , 1fr );
+            gap: 25px;
+        }
     }
+
     .card{
+        @include max-lg {
+            max-width: 335px;
+        }
+
         background-color: white;
         &__img{
             height: 240px;
@@ -256,6 +444,310 @@ body{
     }
 }
 
+/* REVIEWS SECTION */
+.reviews {
+    max-width: 1320px;
+    margin-right: auto;
+    margin-left: auto;
+    background-color: map-get($colores, "neutral-dark");
+    margin-bottom: 200px;
+
+    &__content{
+        padding-top: 120px;
+        padding-bottom: 120px;
+        padding-left: 240px;
+        padding-right: 240px;
+        @include flexible(flex, column, nowrap, space-between, center, 105px);
+
+        @include max-lg {
+            gap: 40px;
+            padding-left: 200px;
+            padding-right: 200px;
+        }
+
+        @include max-md {
+            gap: 40px;
+            padding-left: 30px;
+            padding-right: 30px;
+        }
+    }
+
+    &__header{
+        font-size: 40px;
+        font-weight: bold;
+        text-align: center;
+        color: map-get($colores, "neutral-light");
+        margin: 0;
+        @include max-md {
+            max-width: 400px;
+        }
+    }
+
+    &__quote{
+        line-height: 160%;
+        font-size: 24px;
+        font-weight: map-get($fontweights, "medium");
+        color: map-get($colores, "secondary");
+        text-align: center;
+        padding-right: 12px;
+        padding-left: 12px;
+    }
+
+    &__user{
+        @include flexible(flex, row, nowrap, space-between, center, 10px);
+    }
+
+    &__userimg{
+        background-image: url(/images/testimonial-section/profile.png);
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background-position: 50%;
+        background-size: cover;
+    }
+
+    &__username{
+        padding-bottom: 5px;
+        color: map-get($colores, "primary-hover");
+        font-weight: map-get($fontweights, "regular");
+        line-height: 150%;
+        font-size: 17px;
+    }
+
+    &__usersite{
+        font-weight: map-get($fontweights, "regular");
+        font-size: 13px;
+        color: map-get($colores, "neutral-light");
+    }
+
+    &__block{
+        position: relative;
+    }
+
+    &__emoji{
+        width: 150px;
+        height: 150px;
+        position: absolute;
+        background-size: cover;
+
+        @include max-lg {
+            width: 100px;
+            height: 100px;
+        }
+
+        @include max-md {
+            display: none;
+        }
+
+        &--top-right{
+            background-image: url(/images/testimonial-section/memoji-2.png);
+            right: 5%;
+            position: absolute;
+            top: 5%;
+        }
+        
+        &--top-left{
+            background-image: url(/images/testimonial-section/memoji-1.png);
+            top: 5%;
+            position: absolute;
+            left: 5%;
+        }
+
+        &--bottom-right{
+            background-image: url(/images/testimonial-section/memoji-4.png);
+            right: 5%;
+            position: absolute;
+            bottom: 5%;
+        }
+
+        &--bottom-left{
+            background-image: url(/images/testimonial-section/memoji-3.png);
+            left: 5%;
+            position: absolute;
+            bottom: 5%;
+        }
+    }
+}
+
+/* SERVICES SECTION */
+.services{
+    margin-top: 150px;
+    margin-bottom: 150px;
+
+    &__header{
+        font-weight: bold;
+        font-size: 40px;
+        color: map-get($colores , "neutral-dark");
+    }
+
+    &__cards{
+        @include grid(3, 40px);
+
+        @include max-lg {
+            grid-template-columns   : repeat( 3 , 1fr );
+            gap: 20px 40px;
+        }
+    
+        @include max-md {
+            grid-template-columns   : repeat( 1 , 1fr );
+            gap: 25px;
+        }
+    }
+
+    .card{
+        background-color: white;
+        padding: 25px 20px;
+        &__img{
+            height: 50px;
+            background-color: map-get($colores , "neutral-light-blue");
+            width: 50px;
+            padding: 15px;
+            border-radius: 100px;
+        }
+
+        &__title{
+            padding-top: 20px;
+            font-size: 24px;
+            font-weight: map-get($fontweights, "medium");
+            color: map-get($colores , "neutral-dark" );
+        }
+
+        &__description{
+            padding: 20px 0px;
+            color: map-get($colores , "neutral-medium" );
+            font-weight: map-get($fontweights, "regular");
+            line-height: 150%;
+            font-size: 20px;
+            min-height: 70px;
+        }
+
+        &__link{
+            text-decoration: none;
+            color: map-get($colores , "primary" );
+            line-height: 150%;
+        }
+    }
+}
+
+/* QUESTIONS SECTION */
+
+.questions{
+    max-width: 1320px;
+    margin-right: auto;
+    margin-left: auto;
+    background-color: map-get($colores, "secondary");
+    margin-bottom: 200px;
+
+    @include max-lg {
+        margin-bottom: 50px;
+    }
+
+    &__inner-container{
+        padding: 125px 0px;
+    }
+
+    &__header{
+        text-align: center;
+        font-weight: bold;
+        font-size: 40px;
+        margin: 0;
+        padding-bottom: 25px;
+
+        @include max-md {
+            font-size: 30px;
+        }
+    }
+
+    &__text{
+        line-height: 150%;
+        font-size: 20px;
+        text-align: center;
+        padding-bottom: 50px;
+    }
+
+    &__subscribe-item{
+        @include flexible(flex, row, nowrap, center, center);
+
+        @include max-md {
+            flex-direction: column;
+        }
+        &-input{
+            width: 393px;
+            height: 80px;
+            margin-bottom: 0px;
+            padding-left: 70px;
+            font-size: 17px;
+            line-height: 150%;
+            background: url(/images/newsletter/icon/mail.svg) no-repeat scroll 20px 25px;
+            background-color: map-get($colores, "neutral-light-blue");
+            border: none;
+            @include max-md {
+                width: 350px;
+            }
+        }
+
+        &-btn{
+            text-decoration: none;
+            height: 100%;
+            height: 80px;
+            width: 198px;
+            padding: 15px 37px;
+            cursor: pointer;
+            margin-left: 20px;
+            font-weight: map-get($fontweights, "medium");
+            line-height: 130%;
+            font-size: 17px;
+            @include max-md {
+                width: 420px;
+                margin-left: 0px;
+                margin-top: 20px
+            }
+        }
+    }
+}
+
+/* FOOTER SECTION */
+.footer{
+    @include flexible(flex, row, nowrap, space-between, center);
+
+    @include max-md {
+        flex-direction: column;
+    }
+
+    &__circle{
+        max-width: 260px;
+
+        @include max-md {
+            text-align: center;
+        }
+
+        &-img{
+            width: 98px;
+        }
+
+        &-text{
+            font-weight: map-get($fontweights, "regular");
+            line-height: 150%;
+            font-size: 17px;
+            color: map-get($colores, "neutral-medium");
+        }
+    }
+
+    &__links{
+        @include grid(3, 40px, "normal", false);
+
+        margin-bottom: 50px;
+
+        &-link{
+            font-weight: map-get($fontweights, "regular");
+            line-height: 150%;
+            font-size: 17px;
+            color: map-get($colores, "neutral-medium");
+            text-decoration: none;
+        }
+    }
+}
+
 .btn{
     border: 1px solid transparent;
     text-decoration: none;
@@ -267,5 +759,4 @@ body{
     &--primary-active{
 
     }
-    
 }

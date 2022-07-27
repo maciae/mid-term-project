@@ -9,20 +9,25 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
     <script src="./src/movies.js"></script>  
   </head>
   <body>
     <header class="header container">
       <img class="header__logo" src="images/logos/circle.svg" alt="Logo Circle">
+      <input type="checkbox" id="checkbox" class="checkboxbtn">
       <nav class="nav">
         <a class="nav__item nav__item--active" href="#">Home</a>
-        <a class="nav__item" href="#">Projects</a>
-        <a class="nav__item" href="#">Services</a>
+        <a class="nav__item" href="#projects">Projects</a>
+        <a class="nav__item" href="#services">Services</a>
       </nav>
+      <label for="checkbox" class="checkbtn">
+          <i class="fas fa-bars"></i>
+      </label>
       <a href="#" class="btn btn--primary">Contact Us</a>
     </header>
     <main>
-      <section class="hero container">
+      <section class="section hero container">
           <div class="hero__content">
             <h1 class="hero__header">Empower Your Business With Stunning Design!</h1>
             <div class="hero__text">
@@ -39,14 +44,14 @@
             <img class="hero-card-2" src="images/hero-section/card-2.png" alt="Project has been accepted">
           </div>
       </section>
-      <section class="client container">
+      <section class="section client container">
         <img class="client__img" src="images/logos/airbnb-logo.svg" alt="airbnb">
         <img class="client__img" src="images/logos/google-logo.svg" alt="google">
         <img class="client__img" src="images/logos/microsoft-logo.svg" alt="microsoft">
         <img class="client__img" src="images/logos/fedex-logo.svg" alt="fedex">
         <img class="client__img" src="images/logos/amazon-logo.svg" alt="amazon">
       </section>
-      <section class="projects container">
+      <section id="projects" class="section projects container">
         <h3 class="projects__header">
           Recent Projects
         </h3>
@@ -90,8 +95,104 @@
           -->
         </div>
       </section>
+      <section class="section reviews">
+        <div class="container reviews__block">
+          <div class="reviews__emoji reviews__emoji--top-left"></div>
+          <div class="reviews__emoji reviews__emoji--top-right"></div>
+          <div class="reviews__emoji reviews__emoji--bottom-left"></div>
+          <div class="reviews__emoji reviews__emoji--bottom-right"></div>
+          <div class="reviews__content">
+            <h3 class="reviews__header">
+              Hear What Our Clients Have to Say
+            </h3>
+            <span class="reviews__quote">
+              “Circle helped us through every stage of our startup. We really enjoyed working with you.”
+            </span>
+            <div class="reviews__user">
+              <div class="reviews__userimg"></div>
+              <div class="reviews__usertext">
+                <div class="reviews__username">
+                  Kristin Watson
+                </div>
+                <div class="reviews__usersite">
+                  Booking.com
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="section services container">
+        <h1 class="services__header">
+          Our Services
+        </h1>
+        <div id="services" class="services__cards container">
+          <div class="card">
+            <img class="card__img" src="images/services-section/icons/1.svg" alt="Project 1">
+            <div class="card__title">
+              User Interface Design
+            </div>
+            <p class="card__description">
+              Circle provides you with a stunning user interface design that is accessible to everyone.
+            </p>
+            <div class="card__link-div">
+              <a class="card__link" href="#">Learn more</a>
+            </div>
+          </div>
+          <div class="card">
+            <img class="card__img" src="images/services-section/icons/2.svg" alt="Project 1">
+            <div class="card__title">
+              User Experience Design
+            </div>
+            <p class="card__description">
+              Circle always focuses on delivering the best user experience to your customers.
+            </p>
+            <div class="card__link-div">
+              <a class="card__link" href="#">Learn more</a>
+            </div>
+          </div>
+          <div class="card">
+            <img class="card__img" src="images/services-section/icons/3.svg" alt="Project 1">
+            <div class="card__title">
+              Application Development
+            </div>
+            <p class="card__description">
+              We develop high-quality mobile and web applications using the latest technology stack.
+            </p>
+            <div class="card__link-div">
+              <a class="card__link" href="#">Learn more</a>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="section questions">
+        <div class="container questions__inner-container">
+          <h3 class="questions__header">
+            Do you have any questions?
+          </h3>
+          <div class="questions__text">
+            Let us help you!
+          </div>
+          <form class="questions__subscribe-item">
+            <input class="questions__subscribe-item-input" type="email" name="email" id="email" placeholder="Enter your email">
+            <input type="submit" value="Subscribe" class="questions__subscribe-item-btn btn--primary"> 
+          </form>
+      </section>
     </main>
-    <footer></footer>
+    <footer class="footer container">
+      <div class="footer__circle">
+        <img class="footer__circle-img" src="/images/logos/circle.svg" alt="Circle logo">
+        <p class="footer__circle-text">2972 Westheimer Rd. Santa Ana, Illinois 85486</p>
+      </div>
+      <div class="footer__links">
+        <a href="#" class="footer__links-link">Team</a>
+        <a href="#" class="footer__links-link">Services</a>
+        <a href="#" class="footer__links-link">About Us</a>
+        <a href="#" class="footer__links-link">Press</a>
+        <a href="#" class="footer__links-link">Projects</a>
+        <a href="#" class="footer__links-link">Privacy Policy</a>
+      </div>
+    </footer>
   </body>
 </html>
 
@@ -135,4 +236,12 @@
       console.log(error);
     }
   }
+
+  const hamburguer = document.querySelector(".hamburger");
+  const navMenu = document.querySelector("nav");
+
+  hamburguer.addEventListener("click", ()=> {
+    hamburguer.classList.toggle("hamburger--active");
+    navMenu.classList.toggle("nav--active");
+  })
 </script>
