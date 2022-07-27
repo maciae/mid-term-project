@@ -746,6 +746,46 @@ body{
     }
 }
 
+.contact-form{
+    &__row{
+        width: 98%;
+    }
+
+    &__full-input{
+        width: 100%;
+    }
+
+    &__twocol{
+        @include grid(2, 40px, "normal");
+        width: 98%;
+    }
+
+    &__label{
+        font-size: 20px;
+        line-height: 150%;
+        font-weight: map-get($fontweights, "regular");
+        color: map-get($colores, "neutral-medium");
+    }
+
+    &__input{
+        height: 70px;
+        padding-left: 20px;
+        border: 1px none #000;
+        background-color: rgba(107, 112, 141, 0.1);
+
+        &--textarea{
+            width: 100%;
+            height: 100px;
+            padding-top: 30px;
+        }
+    }
+
+    .btn{
+        margin-top: 30px;
+        width: 100%;
+    }
+}
+
 /* FOOTER SECTION */
 .footer{
     @include flexible(flex, row, nowrap, space-between, center);

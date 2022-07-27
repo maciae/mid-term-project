@@ -25,7 +25,7 @@
       <label for="checkbox" class="checkbtn">
           <i class="fas fa-bars"></i>
       </label>
-      <a href="#" class="btn btn--primary">Contact Us</a>
+      <a href="/contact.html" class="btn btn--primary">Contact Us</a>
   </header>
     <main>
       <section class="section single-project container">
@@ -55,4 +55,40 @@
         document.getElementsByClassName('single-project__text')[0].textContent = post.body;
         document.getElementsByClassName('projects__header')[0].textContent = "Other projects";
     });
+
+    const projectsImages = ["images/projects-section/1.jpg", "images/projects-section/2.jpg", "images/projects-section/3.jpg"];
+  const projectsLinks = ["/simplify", "/dashcoin", "/vectorify"];
+  
+  console.log("js projects");
+  
+  getPosts().then(posts => {
+  /*
+      posts.forEach(function (item, index) {
+          console.log(item, index);
+      });
+  */
+  
+  let loopLength = posts.length > 3 ? 3 : posts.length;
+    waitForElm('.projects__cards').then((elm) => {
+      console.log("element loaded");
+      for (let i = 0 ; i < loopLength ; i++){
+          //console.log(posts[i]);
+          let cardHTML = '\
+          <div class="card"> \
+          <img class="card__img"src="' + projectsImages[i] + '"> \
+          <div class="card__title"> \
+              '+ posts[i].title +' \
+          </div> \
+          <p class="card__description"> \
+              ' + posts[i].body +' \
+          </p> \
+          <div class="card__link-div"> \
+              <a class="card__link" href=" ' + projectsLinks[i] +'">Learn more</a> \
+          </div> \
+          </div> \
+          ';
+          document.getElementsByClassName('projects__cards')[0].insertAdjacentHTML('beforeend', cardHTML);    
+      }
+    });
+  });
 </script>
