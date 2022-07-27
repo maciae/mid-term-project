@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Mid-term project</title>
+    <link rel="stylesheet" type="text/css" href="./styles/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
+    <script src="https://unpkg.com/htmlincludejs"></script>
+    <script src="js/index.js"></script>  
+  </head>
+  <body>
+    <header class="header container">
+        <img class="header__logo" src="images/logos/circle.svg" alt="Logo Circle">
+        <input type="checkbox" id="checkbox" class="checkboxbtn">
+        <nav class="nav">
+            <a class="nav__item" href="/index.html">Home</a>
+            <a class="nav__item nav__item--active" href="#projects">Projects</a>
+            <a class="nav__item" href="#services">Services</a>
+        </nav>
+        <label for="checkbox" class="checkbtn">
+            <i class="fas fa-bars"></i>
+        </label>
+        <a href="#" class="btn btn--primary">Contact Us</a>
+    </header>
+    <main>
+      <section class="section single-project container">
+        <h1 class="single-project__title">Simplify</h1>
+        <div class="single-project__info-wrapper">
+            <div class="single-project__type">UI Design & App development</div>
+            <div class="single-project__date"><span class="single-project__date--black">Completed on</span> June 22, 2021</div>
+        </div>
+        <div>
+            <img class="single-project__img" src="images/projects-section/2.jpg">
+        </div>
+        <div class="single-project__text">
+            Lorem ipsum
+        </div>
+      </section>
+      <include src="sections/projects.html"></include>
+      <include src="sections/questions.html"></include>
+    </main>
+    <include src="sections/footer.html"></include>
+  </body>
+</html>
+
+<script type="text/javascript">
+    getPost(2).then(post => {
+        console.log(post);
+        document.getElementsByClassName('single-project__title')[0].textContent = post.title;
+        document.getElementsByClassName('single-project__text')[0].textContent = post.body;
+        document.getElementsByClassName('projects__header')[0].textContent = "Other projects";
+    });
+</script>

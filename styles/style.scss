@@ -706,6 +706,46 @@ body{
     }
 }
 
+.single-project{
+    &__title{
+        font-weight: map-get($fontweights, "bold");
+        font-size: 60px;
+    }
+
+    &__info-wrapper{
+        @include flexible(flex, row, nowrap, space-between, center);
+    }
+
+    &__type{
+        color: map-get($colores, "neutral-medium");
+        font-size: 24px;
+    }
+
+    &__date{
+        color: map-get($colores, "neutral-medium");
+        font-size: 24px;
+        font-weight: map-get($fontweights, "medium");
+    }
+
+    &__date--black{
+        color: black;
+    }
+
+    &__img{
+        width: 100%;
+        height: 444px;
+        object-fit: cover;
+        margin-top: 30px;
+    }
+
+    &__text{
+        color: map-get($colores, "neutral-medium");
+        line-height: 150%;
+        font-size: 20px;
+        margin-top: 30px;
+    }
+}
+
 /* FOOTER SECTION */
 .footer{
     @include flexible(flex, row, nowrap, space-between, center);
