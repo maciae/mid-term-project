@@ -1,62 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Mid-term project</title>
-    <link rel="stylesheet" type="text/css" href="./styles/style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
-    <script src="https://unpkg.com/htmlincludejs"></script>
-    <script src="js/index.js"></script>  
-  </head>
-  <body>
-    <header class="header container">
-        <img class="header__logo" src="images/logos/circle.svg" alt="Logo Circle">
-        <input type="checkbox" id="checkbox" class="checkboxbtn">
-        <nav class="nav">
-            <a class="nav__item" href="/index.html">Home</a>
-            <a class="nav__item" href="/index.html#projects">Projects</a>
-            <a class="nav__item" href="/index.html#services">Services</a>
-        </nav>
-        <label for="checkbox" class="checkbtn">
-            <i class="fas fa-bars"></i>
-        </label>
-        <a href="/contact.html" class="btn btn--primary">Contact Us</a>
-    </header>
-    <main>
-      <section class="section contact-form container">
-        <h1 class="contact-form__header">
-          Contact Us
-        </h1>
-        <form id="form" name="form" action="https://jsonplaceholder.typicode.com/posts">
-          <div class="contact-form__row">
-            <label class="contact-form__label" for="name">Full name*</label><br>
-            <input placeholder="Enter your full name" required class="contact-form__full-input contact-form__input" type="text" id="name" name="name">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Mid-term project</title>
+  <link rel="stylesheet" type="text/css" href="./styles/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
+  <script src="https://unpkg.com/htmlincludejs"></script>
+  <script src="js/index.js"></script>
+</head>
+
+<body>
+  <header class="header container">
+    <img class="header__logo" src="images/logos/circle.svg" alt="Logo Circle">
+    <input type="checkbox" id="checkbox" class="checkboxbtn">
+    <nav class="nav">
+      <a class="nav__item" href="/index.html">Home</a>
+      <a class="nav__item" href="/index.html#projects">Projects</a>
+      <a class="nav__item" href="/index.html#services">Services</a>
+    </nav>
+    <label for="checkbox" class="checkbtn">
+      <i class="fas fa-bars"></i>
+    </label>
+    <a href="/contact.html" class="btn btn--primary">Contact Us</a>
+  </header>
+  <main>
+    <section class="section contact-form container">
+      <h1 class="contact-form__header">
+        Contact Us
+      </h1>
+      <form id="form" name="form">
+        <div class="contact-form__row">
+          <label class="contact-form__label" for="name">Full name*</label><br>
+          <input placeholder="Enter your full name" required class="contact-form__full-input contact-form__input"
+            type="text" id="name" name="name">
+        </div>
+        <div class="contact-form__twocol">
+          <div class="contact-form__full-input">
+            <label class="contact-form__label" for="email">Email</label><br>
+            <input placeholder="Enter your email address" class="contact-form__full-input contact-form__input"
+              type="text" id="email" name="email">
           </div>
-          <div class="contact-form__twocol">
-            <div class="contact-form__full-input">
-              <label class="contact-form__label" for="email">Email</label><br>
-              <input placeholder="Enter your email address" class="contact-form__full-input contact-form__input" type="text" id="email" name="email">
-            </div>
-            <div class="contact-form__full-input">
-              <label class="contact-form__label" for="phone">Text</label><br>
-              <input placeholder="Enter your phone number" class="contact-form__full-input contact-form__input" type="phone" id="phone" name="phone">
-            </div>
+          <div class="contact-form__full-input">
+            <label class="contact-form__label" for="phone">Text</label><br>
+            <input placeholder="Enter your phone number" class="contact-form__full-input contact-form__input"
+              type="phone" id="phone" name="phone">
           </div>
-          <div class="contact-form__row">
-            <label class="contact-form__label" for="message">Message*</label><br>
-            <textarea placeholder="Write your message here..." required id="message" class="contact-form__input contact-form__input--textarea" name="message"></textarea>
-          </div>
-          <input class="btn btn--primary" type="submit" value="Submit">
-        </form> 
-      </section>
-    </main>
-    <include src="sections/footer.html"></include>
-  </body>
+        </div>
+        <div class="contact-form__row">
+          <label class="contact-form__label" for="message">Message*</label><br>
+          <textarea placeholder="Write your message here..." required id="message"
+            class="contact-form__input contact-form__input--textarea" name="message"></textarea>
+        </div>
+        <input class="btn btn--primary" type="button" value="Submit" onclick="sendForm()">
+      </form>
+    </section>
+  </main>
+  <include src="sections/footer.html"></include>
+</body>
+
 </html>
 
 <script type="text/javascript">
@@ -68,36 +75,44 @@
       );
   };
 
-  document.getElementById( 'form' ).addEventListener('submit', function(e) {
+  function sendForm() {
+    let msg = "";
+
     let email = document.getElementsByName('email')[0].value;
-    if (email != '' && !validateEmail(email)){
-      alert("Introduce un email correcto");
-      e.preventDefault();
+    if (email != '' && !validateEmail(email)) {
+      msg += "Introduce un email correcto" + "\n";
     }
 
-    const reg = new RegExp('^\d+$')
     let phone = document.getElementsByName('phone')[0].value
-    if (phone != '' && phone.length == 9 && parseInt(phone)){
+    if (phone != '' && phone.length == 9 && parseInt(phone)) {
       console.log("telefono correcto");
     } else {
-      alert("Introduce un telefono correcto");
-      e.preventDefault();
+      msg += "Introduce un telefono correcto" + "\n";
     }
+
+    if (msg != "") {
+      alert(msg);
+      return;
+    }
+
+    var formData = new FormData(document.getElementById("form"));
+
 
     var xhr = new XMLHttpRequest();
-    xhr.open("POST", "https://jsonplaceholder.typicode.com/posts"); 
-    xhr.onload;
-    // or onerror, onabort
-    var formData = new FormData(document.getElementById("form")); 
+    xhr.open("POST", "https://jsonplaceholder.typicode.com/posts", true);
+
+    xhr.onreadystatechange = function () {
+      if (this.readyState == 4) {
+        if (this.status == 201) {
+          alert("formulario enviado");
+        } else {
+          alert("Ha habido un problema. Error " + this.status);
+        }
+      }
+    };
+
     xhr.send(formData);
-    console.log(xhr);
-    console.log(xhr['status']);
-    if (xhr['status'] === 201){
-      alert("Formulario enviado con éxito")
-    }
-    e.preventDefault();
+  }
 
 
-    alert("Formulario ")
-  });
 </script>
