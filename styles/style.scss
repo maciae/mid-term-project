@@ -292,6 +292,7 @@ body{
     }
 
     &__buttons{
+        @include flexible(flex, row, nowrap, center, center);
         @include max-lg {
             text-align: center;
         }
@@ -315,7 +316,7 @@ body{
             max-width: 570px;
 
             @include max-sm {
-                max-width: 400px;
+                max-width: 300px;
             }
         }
 
@@ -682,7 +683,7 @@ body{
             background-color: map-get($colores, "neutral-light-blue");
             border: none;
             @include max-md {
-                width: 350px;
+                width: 77%;
             }
         }
 
@@ -698,7 +699,7 @@ body{
             line-height: 130%;
             font-size: 17px;
             @include max-md {
-                width: 420px;
+                width: 100%;
                 margin-left: 0px;
                 margin-top: 20px
             }

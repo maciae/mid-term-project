@@ -191,6 +191,13 @@ body .section, body .footer {
     font-size: 17px;
   }
 }
+.hero__buttons {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+  gap: 0px;
+}
 @media (max-width: 992px) {
   .hero__buttons {
     text-align: center;
@@ -213,7 +220,7 @@ body .section, body .footer {
 }
 @media (max-width: 576px) {
   .hero__image .hero-img {
-    max-width: 400px;
+    max-width: 300px;
   }
 }
 .hero__image .hero-card-1 {
@@ -624,7 +631,7 @@ body .section, body .footer {
 }
 @media (max-width: 768px) {
   .questions__subscribe-item-input {
-    width: 350px;
+    width: 77%;
   }
 }
 .questions__subscribe-item-btn {
@@ -641,7 +648,7 @@ body .section, body .footer {
 }
 @media (max-width: 768px) {
   .questions__subscribe-item-btn {
-    width: 420px;
+    width: 100%;
     margin-left: 0px;
     margin-top: 20px;
   }
